@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 13, 2022 7:18:25 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.modern.www._1_2_MySql_DB_entities.Hospital" table="hospital" catalog="smrtamb" optimistic-lock="version">
+        <id name="hospitalId" type="int">
+            <column name="hospital_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="hospitalName" type="string">
+            <column name="hospital_name" length="100" not-null="true" />
+        </property>
+        <property name="emptyRooms" type="int">
+            <column name="empty_rooms" not-null="true" />
+        </property>
+        <property name="emptyOperatingTheaters" type="int">
+            <column name="empty_operating_theaters" not-null="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="150" not-null="true" />
+        </property>
+        <set name="doctors" table="doctor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="hospital_id" not-null="true" />
+            </key>
+            <one-to-many class="com.modern.www._1_2_MySql_DB_entities.Doctor" />
+        </set>
+        <set name="departments" table="hospital_departments" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="hospital_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.modern.www._1_2_MySql_DB_entities.Department">
+                <column name="department_number" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="supplieses" table="hospital_supplies" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="hospital_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.modern.www._1_2_MySql_DB_entities.Supplies">
+                <column name="supply_id" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="patientAmbulanceHospitals" table="patient_ambulance_hospital" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="hospital_id" not-null="true" />
+            </key>
+            <one-to-many class="com.modern.www._1_2_MySql_DB_entities.PatientAmbulanceHospital" />
+        </set>
+    </class>
+</hibernate-mapping>

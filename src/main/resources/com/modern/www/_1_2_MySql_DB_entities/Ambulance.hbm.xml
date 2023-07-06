@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 13, 2022 7:18:25 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.modern.www._1_2_MySql_DB_entities.Ambulance" table="ambulance" catalog="smrtamb" optimistic-lock="version">
+        <id name="carNumber" type="int">
+            <column name="car_number" />
+            <generator class="assigned" />
+        </id>
+        <property name="address" type="string">
+            <column name="address" length="150" not-null="true" />
+        </property>
+        <set name="ambulanceSupplieses" table="ambulance_supplies" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="car_number" not-null="true" />
+            </key>
+            <one-to-many class="com.modern.www._1_2_MySql_DB_entities.AmbulanceSupplies" />
+        </set>
+        <set name="patientAmbulanceHospitals" table="patient_ambulance_hospital" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="car_number" not-null="true" />
+            </key>
+            <one-to-many class="com.modern.www._1_2_MySql_DB_entities.PatientAmbulanceHospital" />
+        </set>
+    </class>
+</hibernate-mapping>

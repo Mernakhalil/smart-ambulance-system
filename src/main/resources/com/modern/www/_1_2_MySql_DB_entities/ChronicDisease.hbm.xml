@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 13, 2022 7:18:25 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.modern.www._1_2_MySql_DB_entities.ChronicDisease" table="chronic_disease" catalog="smrtamb" optimistic-lock="version">
+        <id name="diseaseId" type="int">
+            <column name="disease_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="diseaseName" type="string">
+            <column name="disease_name" length="150" not-null="true" />
+        </property>
+        <set name="patientDiseaseses" table="patient_diseases" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="disease_id" not-null="true" />
+            </key>
+            <one-to-many class="com.modern.www._1_2_MySql_DB_entities.PatientDiseases" />
+        </set>
+    </class>
+</hibernate-mapping>

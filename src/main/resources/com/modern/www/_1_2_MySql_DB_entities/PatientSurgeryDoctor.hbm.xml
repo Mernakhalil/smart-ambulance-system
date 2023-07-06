@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 13, 2022 7:18:25 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.modern.www._1_2_MySql_DB_entities.PatientSurgeryDoctor" table="patient_surgery_doctor" catalog="smrtamb" optimistic-lock="version">
+        <composite-id name="id" class="com.modern.www._1_2_MySql_DB_entities.PatientSurgeryDoctorId">
+            <key-property name="surgeryDate" type="date">
+                <column name="surgery_date" length="10" />
+            </key-property>
+            <key-property name="pssn" type="long">
+                <column name="PSSN" />
+            </key-property>
+            <key-property name="surgeryId" type="int">
+                <column name="surgery_id" />
+            </key-property>
+            <key-property name="dssn" type="long">
+                <column name="DSSN" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="doctor" class="com.modern.www._1_2_MySql_DB_entities.Doctor" update="false" insert="false" fetch="select">
+            <column name="DSSN" not-null="true" />
+        </many-to-one>
+        <many-to-one name="patient" class="com.modern.www._1_2_MySql_DB_entities.Patient" update="false" insert="false" fetch="select">
+            <column name="PSSN" not-null="true" />
+        </many-to-one>
+        <many-to-one name="surgery" class="com.modern.www._1_2_MySql_DB_entities.Surgery" update="false" insert="false" fetch="select">
+            <column name="surgery_id" not-null="true" />
+        </many-to-one>
+        <property name="postoperativeDiagnosis" type="string">
+            <column name="postoperative_diagnosis" length="200" not-null="true" />
+        </property>
+        <property name="procedurePerformed" type="string">
+            <column name="procedure_performed" length="200" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

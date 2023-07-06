@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 13, 2022 7:18:25 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.modern.www._1_2_MySql_DB_entities.PatientCase" table="patient_case" catalog="smrtamb" optimistic-lock="version">
+        <composite-id name="id" class="com.modern.www._1_2_MySql_DB_entities.PatientCaseId">
+            <key-property name="transDate" type="date">
+                <column name="trans_date" length="10" />
+            </key-property>
+            <key-property name="ssn" type="long">
+                <column name="SSN" />
+            </key-property>
+            <key-property name="caseId" type="int">
+                <column name="case_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="caseData" class="com.modern.www._1_2_MySql_DB_entities.CaseData" update="false" insert="false" fetch="select">
+            <column name="case_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="patient" class="com.modern.www._1_2_MySql_DB_entities.Patient" update="false" insert="false" fetch="select">
+            <column name="SSN" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

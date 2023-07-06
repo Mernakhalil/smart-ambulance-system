@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 13, 2022 7:18:25 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.modern.www._1_2_MySql_DB_entities.AmbulanceSupplies" table="ambulance_supplies" catalog="smrtamb" optimistic-lock="version">
+        <id name="supplyTransId" type="int">
+            <column name="supply_trans_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="ambulance" class="com.modern.www._1_2_MySql_DB_entities.Ambulance" fetch="select">
+            <column name="car_number" not-null="true" />
+        </many-to-one>
+        <many-to-one name="supplies" class="com.modern.www._1_2_MySql_DB_entities.Supplies" fetch="select">
+            <column name="supply_id" />
+        </many-to-one>
+        <property name="transDate" type="date">
+            <column name="trans_date" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
